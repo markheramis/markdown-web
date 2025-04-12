@@ -4,14 +4,83 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
 import AppLogo from './app-logo';
 
-const mainNavItems: NavItem[] = [
+const folderStructure: NavItem[] = [
     {
-        title: 'Dashboard',
-        href: '/dashboard',
-        icon: LayoutGrid,
+        title: 'layout.tsx',
+        href: '/layout',
+        type: 'file',
+    },
+    {
+        title: 'page.tsx',
+        href: '/page',
+        type: 'file',
+    },
+    {
+        title: 'components',
+        items: [
+            { title: 'Navbar.tsx', href: '/components/Navbar', type: 'file' },
+            {
+                title: 'Sidebar',
+                items: [
+                    { title: 'SidebarItem.tsx', href: '/components/Sidebar/SidebarItem', type: 'file' },
+                    { title: 'CollapsibleItem.tsx', href: '/components/Sidebar/CollapsibleItem', type: 'file' },
+                    { title: 'index.ts', href: '/components/Sidebar/index', type: 'file' },
+                ],
+                type: 'folder',
+            },
+        ],
+        type: 'folder',
+    },
+    {
+        title: 'hooks',
+        items: [{ title: 'useSidebar.ts', href: '/hooks/useSidebar', type: 'file' }],
+        type: 'folder',
+    },
+    {
+        title: 'styles',
+        items: [{ title: 'globals.css', href: '/styles/globals', type: 'file' }],
+        type: 'folder',
+    },
+    {
+        title: 'utils',
+        items: [{ title: 'helpers.ts', href: '/utils/helpers', type: 'file' }],
+        type: 'folder',
+    },
+    {
+        title: 'folders',
+        items: [
+            {
+                title: 'Projects',
+                items: [
+                    {
+                        title: 'ProjectA',
+                        items: [{ title: 'page.tsx', href: '/folders/Projects/ProjectA/page', type: 'file' }],
+                        type: 'folder',
+                    },
+                    {
+                        title: 'ProjectB',
+                        items: [
+                            { title: 'page.tsx', href: '/folders/Projects/ProjectB/page', type: 'file' },
+                            {
+                                title: 'Notes',
+                                items: [{ title: 'notes.md', href: '/folders/Projects/ProjectB/Notes/notes', type: 'file' }],
+                                type: 'folder',
+                            },
+                        ],
+                        type: 'folder',
+                    },
+                ],
+                type: 'folder',
+            },
+            {
+                title: 'Shared',
+                items: [{ title: 'Readme.md', href: '/folders/Shared/Readme', type: 'file' }],
+                type: 'folder',
+            },
+        ],
+        type: 'folder',
     },
 ];
 
@@ -19,18 +88,18 @@ const footerNavItems: NavItem[] = [
     {
         title: 'Repository',
         href: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
+        type: 'file',
     },
     {
         title: 'Documentation',
         href: 'https://laravel.com/docs/starter-kits',
-        icon: BookOpen,
+        type: 'file',
     },
 ];
 
 export function AppSidebar() {
     return (
-        <Sidebar collapsible="icon" variant="inset">
+        <Sidebar className="p-0" collapsible="icon" variant="inset">
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
@@ -43,8 +112,8 @@ export function AppSidebar() {
                 </SidebarMenu>
             </SidebarHeader>
 
-            <SidebarContent>
-                <NavMain items={mainNavItems} />
+            <SidebarContent className="ml-0 p-0">
+                <NavMain items={folderStructure} />
             </SidebarContent>
 
             <SidebarFooter>
