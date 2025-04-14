@@ -1,4 +1,3 @@
-// FolderItem component
 import { NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { ChevronRight } from 'lucide-react';
@@ -16,15 +15,15 @@ const SidebarItem = ({ item }: IProps) => {
     return (
         <>
             {item.type === 'file' ? (
-                <SidebarMenuButton asChild isActive={item.isActive} className="m-0 h-4.5 gap-0">
-                    <Link href={item.href!}>{item.title}</Link>
+                <SidebarMenuButton asChild isActive={item.isActive} className="m-0 h-4.5 gap-0 rounded-none">
+                    <Link href={item.href || '#'}>{item.title}</Link>
                 </SidebarMenuButton>
             ) : (
                 <Collapsible key={item.title} title={item.title} defaultOpen={isOpen} onOpenChange={() => setIsOpen(!isOpen)} className="group gap-0">
                     <SidebarGroup className="p-0">
                         <SidebarGroupLabel
                             asChild
-                            className="group/label text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm"
+                            className="group/label hover:bg-sidebar-accent hover:text-sidebar-accent-foreground rounded-none text-sm"
                         >
                             <CollapsibleTrigger className="h-auto gap-0">
                                 <ChevronRight className={`transition-transform ${isOpen ? 'rotate-90' : 'rotate-0'}`} />

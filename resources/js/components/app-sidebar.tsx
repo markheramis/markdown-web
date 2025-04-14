@@ -1,32 +1,112 @@
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import AppLogo from './app-logo';
+import { ArrowUpNarrowWide, ChevronsDownUp, FolderDown, SquarePen, TvMinimal } from 'lucide-react';
 
 const folderStructure: NavItem[] = [
     {
         title: 'layout.tsx',
-        href: '/layout',
+        href: '',
         type: 'file',
     },
     {
         title: 'page.tsx',
-        href: '/page',
+        href: '',
         type: 'file',
     },
     {
         title: 'components',
         items: [
-            { title: 'Navbar.tsx', href: '/components/Navbar', type: 'file' },
+            { title: 'Navbar.tsx', href: '', type: 'file' },
             {
                 title: 'Sidebar',
                 items: [
-                    { title: 'SidebarItem.tsx', href: '/components/Sidebar/SidebarItem', type: 'file' },
-                    { title: 'CollapsibleItem.tsx', href: '/components/Sidebar/CollapsibleItem', type: 'file' },
-                    { title: 'index.ts', href: '/components/Sidebar/index', type: 'file' },
+                    { title: 'SidebarItem.tsx', href: '', type: 'file' },
+                    { title: 'CollapsibleItem.tsx', href: '', type: 'file' },
+                    { title: 'index.ts', href: '', type: 'file' },
+                ],
+                type: 'folder',
+            },
+        ],
+        type: 'folder',
+    },
+    {
+        title: 'components',
+        items: [
+            { title: 'Navbar.tsx', href: '', type: 'file' },
+            {
+                title: 'Sidebar',
+                items: [
+                    { title: 'SidebarItem.tsx', href: '', type: 'file' },
+                    { title: 'CollapsibleItem.tsx', href: '', type: 'file' },
+                    { title: 'index.ts', href: '', type: 'file' },
+                ],
+                type: 'folder',
+            },
+        ],
+        type: 'folder',
+    },
+    {
+        title: 'components',
+        items: [
+            { title: 'Navbar.tsx', href: '', type: 'file' },
+            {
+                title: 'Sidebar',
+                items: [
+                    { title: 'SidebarItem.tsx', href: '', type: 'file' },
+                    { title: 'CollapsibleItem.tsx', href: '', type: 'file' },
+                    { title: 'index.ts', href: '', type: 'file' },
+                ],
+                type: 'folder',
+            },
+        ],
+        type: 'folder',
+    },
+    {
+        title: 'components',
+        items: [
+            { title: 'Navbar.tsx', href: '', type: 'file' },
+            {
+                title: 'Sidebar',
+                items: [
+                    { title: 'SidebarItem.tsx', href: '', type: 'file' },
+                    { title: 'CollapsibleItem.tsx', href: '', type: 'file' },
+                    { title: 'index.ts', href: '', type: 'file' },
+                ],
+                type: 'folder',
+            },
+        ],
+        type: 'folder',
+    },
+    {
+        title: 'components',
+        items: [
+            { title: 'Navbar.tsx', href: '', type: 'file' },
+            {
+                title: 'Sidebar',
+                items: [
+                    { title: 'SidebarItem.tsx', href: '', type: 'file' },
+                    { title: 'CollapsibleItem.tsx', href: '', type: 'file' },
+                    { title: 'index.ts', href: '', type: 'file' },
+                ],
+                type: 'folder',
+            },
+        ],
+        type: 'folder',
+    },
+    {
+        title: 'components',
+        items: [
+            { title: 'Navbar.tsx', href: '', type: 'file' },
+            {
+                title: 'Sidebar',
+                items: [
+                    { title: 'SidebarItem.tsx', href: '', type: 'file' },
+                    { title: 'CollapsibleItem.tsx', href: '', type: 'file' },
+                    { title: 'index.ts', href: '', type: 'file' },
                 ],
                 type: 'folder',
             },
@@ -35,17 +115,17 @@ const folderStructure: NavItem[] = [
     },
     {
         title: 'hooks',
-        items: [{ title: 'useSidebar.ts', href: '/hooks/useSidebar', type: 'file' }],
+        items: [{ title: 'useSidebar.ts', href: '', type: 'file' }],
         type: 'folder',
     },
     {
         title: 'styles',
-        items: [{ title: 'globals.css', href: '/styles/globals', type: 'file' }],
+        items: [{ title: 'globals.css', href: '', type: 'file' }],
         type: 'folder',
     },
     {
         title: 'utils',
-        items: [{ title: 'helpers.ts', href: '/utils/helpers', type: 'file' }],
+        items: [{ title: 'helpers.ts', href: '', type: 'file' }],
         type: 'folder',
     },
     {
@@ -56,16 +136,16 @@ const folderStructure: NavItem[] = [
                 items: [
                     {
                         title: 'ProjectA',
-                        items: [{ title: 'page.tsx', href: '/folders/Projects/ProjectA/page', type: 'file' }],
+                        items: [{ title: 'page.tsx', href: '', type: 'file' }],
                         type: 'folder',
                     },
                     {
                         title: 'ProjectB',
                         items: [
-                            { title: 'page.tsx', href: '/folders/Projects/ProjectB/page', type: 'file' },
+                            { title: 'page.tsx', href: '', type: 'file' },
                             {
                                 title: 'Notes',
-                                items: [{ title: 'notes.md', href: '/folders/Projects/ProjectB/Notes/notes', type: 'file' }],
+                                items: [{ title: 'notes.md', href: '', type: 'file' }],
                                 type: 'folder',
                             },
                         ],
@@ -76,7 +156,7 @@ const folderStructure: NavItem[] = [
             },
             {
                 title: 'Shared',
-                items: [{ title: 'Readme.md', href: '/folders/Shared/Readme', type: 'file' }],
+                items: [{ title: 'Readme.md', href: '', type: 'file' }],
                 type: 'folder',
             },
         ],
@@ -87,39 +167,74 @@ const folderStructure: NavItem[] = [
 const footerNavItems: NavItem[] = [
     {
         title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
+        href: '',
         type: 'file',
     },
     {
         title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits',
+        href: '',
         type: 'file',
+    },
+];
+
+const leftSideBarTopIcons = [
+    {
+        title: 'Repository',
+        href: '',
+        icon: SquarePen,
+    },
+    {
+        title: 'Documentation',
+        href: '',
+        icon: FolderDown,
+    },
+    {
+        title: 'Documentation',
+        href: '',
+        icon: ArrowUpNarrowWide,
+    },
+    {
+        title: 'Documentation',
+        href: '',
+        icon: TvMinimal,
+    },
+    {
+        title: 'Documentation',
+        href: '',
+        icon: ChevronsDownUp,
     },
 ];
 
 export function AppSidebar() {
     return (
-        <Sidebar className="p-0" collapsible="icon" variant="inset">
-            <SidebarHeader>
-                <SidebarMenu>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton size="lg" asChild>
-                            <Link href="/dashboard" prefetch>
-                                <AppLogo />
-                            </Link>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                </SidebarMenu>
-            </SidebarHeader>
-
-            <SidebarContent className="ml-0 p-0">
-                <NavMain items={folderStructure} />
-            </SidebarContent>
-
-            <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
-                <NavUser />
-            </SidebarFooter>
+        <Sidebar className="group left-12 border-r bg-none p-0 text-neutral-400" collapsible="offcanvas" variant="inset">
+            <div className="min-h-screen">
+                <SidebarHeader className="h-5 p-0">
+                    <SidebarMenu className="hidden w-full flex-row items-center justify-end gap-x-2 py-0.5 pr-2 group-hover:flex">
+                        {leftSideBarTopIcons.length > 0 &&
+                            leftSideBarTopIcons.map((item, index) => (
+                                <SidebarMenuItem key={index} className="p-0">
+                                    <Link
+                                        href={item.href || '#'}
+                                        className="z-10 rounded-none bg-transparent p-0 py-0 hover:text-black hover:brightness-120 dark:hover:text-white"
+                                        prefetch
+                                    >
+                                        <item.icon className="h-4 w-4" />
+                                    </Link>
+                                </SidebarMenuItem>
+                            ))}
+                    </SidebarMenu>
+                </SidebarHeader>
+                <div className="max-h-screen overflow-auto text-neutral-400">
+                    <SidebarContent className="ml-0 p-0">
+                        <NavMain items={folderStructure} />
+                    </SidebarContent>
+                    <SidebarFooter className="hidden">
+                        <NavFooter items={footerNavItems} className="mt-auto" />
+                        <NavUser />
+                    </SidebarFooter>
+                </div>
+            </div>
         </Sidebar>
     );
 }
