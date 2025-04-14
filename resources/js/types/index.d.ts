@@ -1,5 +1,6 @@
-import { LucideIcon } from 'lucide-react';
+// import { LucideIcon } from 'lucide-react';
 import type { Config } from 'ziggy-js';
+import { LucideIcon } from 'lucide-react';
 
 export interface Auth {
     user: User;
@@ -17,8 +18,10 @@ export interface NavGroup {
 
 export interface NavItem {
     title: string;
-    href: string;
-    icon?: LucideIcon | null;
+    href?: string;
+    type?: string;
+    icon?: LucideIcon;
+    items?: NavItem[];
     isActive?: boolean;
 }
 
