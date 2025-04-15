@@ -27,9 +27,24 @@ class Document extends Model
      *
      * @var list<string>
      */
-    protected $hidden = [
-        
-    ];
+    protected $hidden = [];
+
+
+    /**
+     * Get the parent document.
+     */
+    public function parent()
+    {
+        return $this->belongsTo(Document::class, 'parent_id');
+    }
+
+    /**
+     * Get the child documents.
+     */
+    public function children()
+    {
+        return $this->hasMany(Document::class, 'parent_id');
+    }
 
     /**
      * Get the attributes that should be cast.
@@ -38,9 +53,7 @@ class Document extends Model
      */
     protected function casts(): array
     {
-        return [
-            
-        ];
+        return [];
     }
 
     /**
