@@ -2,7 +2,7 @@ import { Sidebar, SidebarContent, SidebarFooter } from '@/components/ui/sidebar'
 
 const RightSidebarTemplate = () => {
     return (
-        <Sidebar side="right" className="border-l p-0" collapsible="offcanvas" variant="inset">
+        <Sidebar side="right" className="border-l p-0" collapsible="none" variant="inset">
             <div className="min-h-screen">
                 <SidebarContent className="ml-0 p-0">
                     <div className="flex w-full justify-center">

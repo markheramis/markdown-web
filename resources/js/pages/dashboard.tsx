@@ -1,6 +1,6 @@
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { DocumentTree, type BreadcrumbItem } from '@/types';
+import { Head, usePage } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -10,8 +10,10 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function Dashboard() {
+    const { props } = usePage();
+    const documentTree = props.documentTree;
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <AppLayout documentTree={documentTree as DocumentTree[]} breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
             <div className="flex max-h-[calc(100vh-28px)] flex-col gap-y-5 overflow-y-auto text-sm">
                 <div className="flex flex-1 flex-col gap-4 rounded-xl px-20">
