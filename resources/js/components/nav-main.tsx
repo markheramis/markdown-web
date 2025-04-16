@@ -1,18 +1,16 @@
 import { SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-import { type NavItem } from '@/types';
-import { usePage } from '@inertiajs/react';
+import { DocumentTree } from '@/types';
 import SidebarItem from './sidebar-item';
 
-export function NavMain({ items = [] }: { items: NavItem[] }) {
-    const page = usePage();
+export function NavMain({ items = [] }: { items: DocumentTree[] }) {
     return (
         <SidebarGroup className="gap-0 p-0">
             <SidebarMenu className="gap-0">
                 {items.map((item, index) => {
                     return (
                         <SidebarMenuItem key={index}>
-                            <SidebarMenuButton asChild isActive={item.href === page.url} tooltip={{ children: item.title }}>
-                                <SidebarItem item={item as NavItem} />
+                            <SidebarMenuButton asChild tooltip={{ children: item.title }}>
+                                <SidebarItem item={item as DocumentTree} />
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                     );
