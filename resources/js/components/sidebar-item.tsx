@@ -64,6 +64,7 @@ const SidebarItem = ({ item }: IProps) => {
                         <p className="truncate">{item.title}</p>
                     </Link>
                 </SidebarMenuButton>
+
             )}
         </>
     );
