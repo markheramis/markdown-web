@@ -18,6 +18,7 @@ export interface DocumentTree {
     id: string;
     children: DocumentTree[];
     slug: string;
+    content: string;
     title: string;
     created_at: string;
     updated_at: string;

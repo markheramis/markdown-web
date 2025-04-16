@@ -13,17 +13,19 @@ class DocumentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($slug = null)
     {
         // Get the root documents (those without parent_id)
         $rootDocuments = Document::whereNull('parent_id')
             ->with('children')
             ->get();
 
+        $document = $slug ? Document::where('slug', $slug)->firstOrFail() : null;
         // Build the document tree recursively
         $documentTree = $this->buildDocumentTree($rootDocuments);
         return Inertia::render('dashboard', [
             'documentTree' => $documentTree,
+            'document' =>  $document
         ]);
     }
 

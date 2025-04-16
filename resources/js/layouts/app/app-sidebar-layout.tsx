@@ -16,9 +16,7 @@ export default function AppSidebarLayout({
 }: PropsWithChildren<{ documentTree?: DocumentTree[]; breadcrumbs?: BreadcrumbItem[] }>) {
     const sidebarRef = useRef<ImperativePanelHandle>(null);
 
-    // Collapse when dragged below a certain threshold
     const handleResize = (size: number) => {
-        // Collapse if user drags below 4%
         if (size <= 4 && sidebarRef.current) {
             sidebarRef.current.collapse();
         }
@@ -26,16 +24,16 @@ export default function AppSidebarLayout({
 
     return (
         <AppShell variant="sidebar">
-            <ResizablePanelGroup direction="horizontal" className="overflow-y-hidden rounded-lg border">
+            <ResizablePanelGroup direction="horizontal" autoSaveId="sidebar-layout" className="overflow-y-hidden rounded-lg border">
                 <MiniSidebarTemplate />
 
                 <ResizablePanel
                     ref={sidebarRef}
-                    minSize={6}
+                    minSize={8}
                     collapsedSize={0}
-                    collapsible
                     defaultSize={20}
                     onResize={handleResize}
+                    collapsible
                     className="text-muted-foreground flex min-h-screen flex-row"
                 >
                     <AppSidebar documentTree={documentTree} />
@@ -43,13 +41,13 @@ export default function AppSidebarLayout({
 
                 <ResizableHandle />
 
-                <ResizablePanel minSize={30} defaultSize={80}>
+                <ResizablePanel className="flex-1" minSize={30}>
                     <AppContent variant="sidebar" className="text-muted-foreground flex flex-row">
-                        <div className="">
+                        <div className="flex-1">
                             <AppSidebarHeader breadcrumbs={breadcrumbs} />
                             {children}
                         </div>
-                        <div className="">
+                        <div className="relative min-w-24">
                             <RightSidebarTemplate />
                         </div>
                     </AppContent>
