@@ -1,4 +1,5 @@
 import type { Config } from 'ziggy-js';
+import { LucideIcon } from 'lucide-react';
 
 export interface Auth {
     user: User;
