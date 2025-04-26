@@ -1,60 +1,103 @@
+import { generateBreadcrumbs } from '@/hooks/use-generate-breadcrumbs';
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
-
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Dashboard',
-        href: '/dashboard',
-    },
-];
+import { DocumentTree } from '@/types';
+import { Head, usePage } from '@inertiajs/react';
+import { useRef, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkBreaks from 'remark-breaks';
+import remarkGfm from 'remark-gfm';
 
 export default function Dashboard() {
+    const { props } = usePage();
+    const documentTree = props.documentTree as DocumentTree[];
+    const document = props.document as DocumentTree;
+    const breadcrumbs = generateBreadcrumbs(documentTree, document);
+
+    const [isEditable, setIsEditable] = useState(false);
+    const [value, setValue] = useState(document?.content || '');
+    const divRef = useRef<HTMLDivElement>(null);
+
+    const handleDoubleClick = () => {
+        setIsEditable(true);
+        setTimeout(() => {
+            divRef.current?.focus();
+        }, 0);
+    };
+
+    const handleBlur = () => {
+        setIsEditable(false);
+        if (divRef.current) {
+            setValue(divRef.current.innerText);
+        }
+    };
+
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <AppLayout documentTree={documentTree} breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
-            <div className="flex max-h-[calc(100vh-28px)] flex-col gap-y-5 overflow-y-auto text-sm">
-                <div className="flex flex-1 flex-col gap-4 rounded-xl px-20">
-                    <h1 className="text-lg">Title 1</h1>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur eveniet omnis dolor, labore recusandae animi nostrum doloremque,
-                    enim, dicta qui sunt deleniti ipsa quisquam architecto minus in vero tempore aperiam? Et expedita voluptate laborum, modi beatae
-                    assumenda at ipsa consequatur exercitationem cumque perferendis cupiditate aliquid eum velit eius! Tempora pariatur placeat
-                    consequuntur minima deleniti voluptate quia labore quaerat consectetur facere! Quod neque laboriosam modi eius saepe est rem
-                    doloremque dolores molestias quidem in consectetur, eaque voluptatum esse fugit rerum commodi, fuga dolorum qui ad! Ex praesentium
-                    veniam corporis esse fuga. Fuga facilis ullam repudiandae sequi laudantium nobis explicabo. Doloribus error magnam eos laborum
-                    iure officiis earum vero expedita dignissimos quaerat. Veritatis nesciunt eius illum. Totam cumque dolores dolorum vitae eius?
-                    Accusantium laboriosam sed ipsum recusandae aut? Quia, voluptatum. Maxime esse ut nostrum, earum nihil alias modi provident
-                    voluptate id voluptatem nisi, veritatis libero architecto fuga magnam necessitatibus, maiores consequatur! Soluta? Ratione ex amet
-                    tempora porro, et quasi ipsum soluta voluptas dolorum iste culpa maxime molestiae enim voluptates officia architecto suscipit
-                    atque dolorem esse nobis at quisquam doloremque cumque? Veritatis, nisi. Neque vitae, modi id saepe quis exercitationem
-                    accusantium in repellendus officiis eum beatae molestias ipsum iste facere dignissimos obcaecati ipsam dolor aliquam harum.
-                    Aperiam corporis sint eum sunt veritatis tempora. Dolor repellendus illo ab, consectetur assumenda esse vitae inventore eligendi
-                    ullam ipsum consequuntur dolorum vel magni, harum maxime fugit minus nisi rerum sapiente reprehenderit possimus reiciendis
-                    officia! Earum, necessitatibus maxime? Unde excepturi repellendus ratione inventore facilis doloremque laborum alias odit, quos a.
-                    Error voluptatibus, natus quam deserunt, a sapiente enim suscipit nam repellendus debitis temporibus rerum deleniti cum adipisci
-                    repudiandae. Vero, esse quia voluptatem earum dolorem officiis! Eveniet perspiciatis natus quos provident! Quia ut, ab quidem, ea
-                    sint tenetur impedit est eaque, sequi dolorem natus perspiciatis pariatur repellat illum eveniet?
-                </div>
-                <div className="flex flex-1 flex-col gap-4 rounded-xl px-20">
-                    <h1 className="text-lg">Title 2</h1>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur eveniet omnis dolor, labore recusandae animi nostrum doloremque,
-                    enim, dicta qui sunt deleniti ipsa quisquam architecto minus in vero tempore aperiam? Et expedita voluptate laborum, modi beatae
-                    assumenda at ipsa consequatur exercitationem cumque perferendis cupiditate aliquid eum velit eius! Tempora pariatur placeat
-                    consequuntur minima deleniti voluptate quia labore quaerat consectetur facere! Quod neque laboriosam modi eius saepe est rem
-                    doloremque dolores molestias quidem in consectetur, eaque voluptatum esse fugit rerum commodi, fuga dolorum qui ad! Ex praesentium
-                    veniam corporis esse fuga. Fuga facilis ullam repudiandae sequi laudantium nobis explicabo. Doloribus error magnam eos laborum
-                    iure officiis earum vero expedita dignissimos quaerat. Veritatis nesciunt eius illum. Totam cumque dolores dolorum vitae eius?
-                    Accusantium laboriosam sed ipsum recusandae aut? Quia, voluptatum. Maxime esse ut nostrum, earum nihil alias modi provident
-                    voluptate id voluptatem nisi, veritatis libero architecto fuga magnam necessitatibus, maiores consequatur! Soluta? Ratione ex amet
-                    tempora porro, et quasi ipsum soluta voluptas dolorum iste culpa maxime molestiae enim voluptates officia architecto suscipit
-                    atque dolorem esse nobis at quisquam doloremque cumque? Veritatis, nisi. Neque vitae, modi id saepe quis exercitationem
-                    accusantium in repellendus officiis eum beatae molestias ipsum iste facere dignissimos obcaecati ipsam dolor aliquam harum.
-                    Aperiam corporis sint eum sunt veritatis tempora. Dolor repellendus illo ab, consectetur assumenda esse vitae inventore eligendi
-                    ullam ipsum consequuntur dolorum vel magni, harum maxime fugit minus nisi rerum sapiente reprehenderit possimus reiciendis
-                    officia! Earum, necessitatibus maxime? Unde excepturi repellendus ratione inventore facilis doloremque laborum alias odit, quos a.
-                    Error voluptatibus, natus quam deserunt, a sapiente enim suscipit nam repellendus debitis temporibus rerum deleniti cum adipisci
-                    repudiandae. Vero, esse quia voluptatem earum dolorem officiis! Eveniet perspiciatis natus quos provident! Quia ut, ab quidem, ea
-                    sint tenetur impedit est eaque, sequi dolorem natus perspiciatis pariatur repellat illum eveniet?
+            <div className="flex max-h-[calc(100vh-28px)] w-full flex-col gap-y-5 overflow-y-auto" onDoubleClick={handleDoubleClick}>
+                <div className="flex flex-1 flex-col gap-4 rounded-xl px-20 py-5">
+                    {document ? (
+                        <>
+                            {isEditable ? (
+                                <div
+                                    ref={divRef}
+                                    contentEditable={isEditable}
+                                    suppressContentEditableWarning
+                                    onBlur={handleBlur}
+                                    onDoubleClick={handleDoubleClick}
+                                    className={`text-primary rounded-xl text-left whitespace-pre-wrap transition-all duration-150 ${
+                                        isEditable ? 'bg-background border-muted border-none outline-none focus:outline-none' : 'cursor-pointer'
+                                    }`}
+                                >
+                                    {value}
+                                </div>
+                            ) : (
+                                <div className="maw-w-prose text-primary">
+                                    <ReactMarkdown
+                                        remarkPlugins={[remarkGfm, remarkBreaks]}
+                                        components={{
+                                            h1: (props) => <h1 className="my-4 text-4xl font-bold" {...props} />,
+                                            h2: (props) => <h2 className="my-3 text-3xl font-semibold" {...props} />,
+                                            h3: (props) => <h3 className="my-2 text-2xl font-semibold" {...props} />,
+                                            h4: (props) => <h4 className="my-2 text-xl font-semibold" {...props} />,
+                                            h5: (props) => <h5 className="my-1 text-lg font-semibold" {...props} />,
+                                            h6: (props) => <h6 className="my-1 text-base font-semibold" {...props} />,
+                                            p: (props) => <p className="my-2 text-base" {...props} />,
+                                            a: (props) => (
+                                                <a
+                                                    className="text-blue-600 underline hover:text-blue-800"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    {...props}
+                                                />
+                                            ),
+                                            ul: (props) => <ul className="my-2 ml-4 list-inside list-disc" {...props} />,
+                                            ol: (props) => <ol className="my-2 ml-4 list-inside list-decimal" {...props} />,
+                                            li: (props) => <li className="my-1" {...props} />,
+                                            blockquote: (props) => (
+                                                <blockquote className="my-4 border-l-4 border-gray-300 pl-4 text-gray-600 italic" {...props} />
+                                            ),
+                                            code: (props) => (
+                                                <code className="rounded bg-gray-100 px-1 py-0.5 font-mono text-sm text-red-600" {...props} />
+                                            ),
+                                            pre: (props) => (
+                                                <pre className="my-4 overflow-x-auto rounded bg-gray-900 p-4 text-sm text-white" {...props} />
+                                            ),
+                                            img: (props) => <img className="my-4 h-auto max-w-full rounded" {...props} />,
+                                            strong: (props) => <strong className="font-bold" {...props} />,
+                                            em: (props) => <em className="italic" {...props} />,
+                                            hr: () => <hr className="my-6 border-t border-gray-300" />,
+                                            br: () => <br />,
+                                        }}
+                                    >
+                                        {value}
+                                    </ReactMarkdown>
+                                </div>
+                            )}
+                        </>
+                    ) : (
+                        <span className="">Welcome</span>
+                    )}
                 </div>
             </div>
         </AppLayout>
