@@ -19,7 +19,6 @@ const SidebarItem = ({ item }: IProps) => {
         return false;
     });
 
-    // Update localStorage whenever the state changes
     useEffect(() => {
         localStorage.setItem(localStorageKey, String(isOpen));
     }, [localStorageKey, isOpen]);
@@ -58,13 +57,11 @@ const SidebarItem = ({ item }: IProps) => {
                     </SidebarGroup>
                 </Collapsible>
             ) : (
-                // <SidebarMenuButton asChild isActive={item.isActive} className="m-0 h-4.5 gap-0 rounded-none">
                 <SidebarMenuButton asChild className="m-0 h-4.5 gap-0 rounded-none">
                     <Link href={`/dashboard/${item.slug}`} prefetch>
                         <p className="truncate">{item.title}</p>
                     </Link>
                 </SidebarMenuButton>
-
             )}
         </>
     );
